@@ -4,14 +4,23 @@ import "gorm.io/gorm"
 
 type Vehical struct {
 	gorm.Model
-	UserID            int64      `json:"user_id"`
-	name 	          string     `json:"name"`
-	license_number    string     `json:"license"`
-	vehicle_number    string     `json:"vehicle_number"`
-	vehicle_type      int64      `json:"type"`
+	UserID            *uint      `json:"user_id"` // FK to users.id
+	User              User       `gorm:"foreignKey:UserID"` // GORM relation
+	Name 	          string     `json:"name"`
+	LicenseNumber     string     `json:"license"`
+	VehicleNumber     string     `json:"vehicle_number"`
+	VehicleType       int64      `json:"type"`
 
 }
 
+
+const (
+    Sadan  = iota + 1   // 1
+    Premium             // 2
+    Noah                // 3
+    Hiece               // 4
+                         
+)
 
 
 

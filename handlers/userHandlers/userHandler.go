@@ -1,4 +1,4 @@
-package handlers
+package userHandlers
 
 import (
 	"net/http"
@@ -26,7 +26,7 @@ func CreateUser(context *gin.Context){
 		return
 	}
 
-	if user.UType == models.Admin || user.UType == models.SystemManager || user.UType == models.Dispatcher || user.UType == models.Agent {
+	if user.UType == models.Admin || user.UType == models.SystemManager || user.UType == models.Dispatcher || user.UType == models.Agent{
 		pass , err := util.UserPassword()
 		if err != nil {
 			context.JSON(http.StatusBadRequest, gin.H{"message": "Could not generate password"})
@@ -35,7 +35,7 @@ func CreateUser(context *gin.Context){
 		user.Password = &pass
 		
 		
-	}else if user.UType == models.Customer {
+	}else if user.UType == models.Customer || user.UType == models.Driver  {
 		user.Password = nil
 	}
 
@@ -49,10 +49,9 @@ func CreateUser(context *gin.Context){
 
     if user.UType == models.Admin || user.UType == models.SystemManager || user.UType == models.Dispatcher || user.UType == models.Agent {
 		context.JSON(http.StatusCreated, gin.H{"message": "Created", "event": user})
-	}else if user.UType == models.Customer {
-		context.JSON(http.StatusCreated, gin.H{"message": "Customer Created", "event": user})	
+	}else if user.UType == models.Customer || user.UType == models.Driver {
+		context.JSON(http.StatusCreated, gin.H{"message": "User Created", "event": user})	
 	}
 
 }	
-
 

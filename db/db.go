@@ -19,11 +19,17 @@ func InitDB() {
     panic("failed to connect database")
   }
   DB.AutoMigrate(&models.User{})
+  DB.AutoMigrate(&models.Vehical{})
 
 }
 
 func SaveUser(user *models.User) error {
   result := DB.Create(user)
+  return result.Error
+}
+
+func SaveVehicle(vehicle *models.Vehical) error {
+  result := DB.Create(vehicle)
   return result.Error
 }
 
@@ -37,6 +43,17 @@ func UniqueHashIdCheck(key string) (int64,error) {
 
     return count,err
 
+}
+
+func DriveruserId(number string ) (int64,error) {
+  var id int64
+	err := DB.
+		Model(&models.User{}).
+		Select("id").
+		Where("number = ? AND u_type = ?", number, 6).
+		Scan(&id).Error
+
+	return id, err
 }
 
 
