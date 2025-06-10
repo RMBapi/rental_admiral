@@ -20,6 +20,7 @@ func InitDB() {
   }
   DB.AutoMigrate(&models.User{})
   DB.AutoMigrate(&models.Vehical{})
+  DB.AutoMigrate(&models.Orders{})
 
 }
 
@@ -45,7 +46,19 @@ func UniqueHashIdCheck(key string) (int64,error) {
 
 }
 
-func DriveruserId(number string ) (int64,error) {
+func DriverProfile(number string ) (int64,error) {
+  var id int64
+	err := DB.
+		Model(&models.User{}).
+		Select("id").
+		Where("number = ? AND u_type = ?", number, 6).
+		Scan(&id).Error
+
+	return id, err
+}
+
+
+func CustomerProfile(number string ) (int64,error) {
   var id int64
 	err := DB.
 		Model(&models.User{}).

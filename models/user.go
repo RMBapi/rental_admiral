@@ -25,3 +25,17 @@ const (
 )
 
 
+var UserTypeMap = map[int8]string{
+	Customer:      "Customer",
+	SystemManager: "SystemManager",
+	Dispatcher:    "Dispatcher",
+	Agent:         "Agent",
+	Admin:         "Admin",
+	Driver:        "Driver",
+}
+
+
+
+
+
+

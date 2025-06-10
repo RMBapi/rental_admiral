@@ -27,5 +27,5 @@ func CreateVehicle(context *gin.Context){
 		return
 	}
 
-	context.JSON(http.StatusCreated, gin.H{"message": "Vehicle Created", "event": vehicle})
+	context.JSON(http.StatusCreated, gin.H{"message": "Vehicle Created successfully"})
 }	

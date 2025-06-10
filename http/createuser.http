@@ -5,7 +5,7 @@ content-type: application/json
 #     "name" : "test",
 #     "email" :"xyz@gmail.com",
 #     "phone" :"123456789",
-#     "type" :  6
+#     "type" :  3
 
 # }
 

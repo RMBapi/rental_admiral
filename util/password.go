@@ -19,16 +19,14 @@ func GeneratePassword(length int) (string, error) {
 }
 
 
-func UserPassword() (string, error) {
+func UserPassword() (string, string, error) {
 	keyLength := 6
 	key, err := GeneratePassword(keyLength)
 	if err != nil {
-		return "", err
+		return "","", err
 	}
-
 	Hashpassword, err := Hashpassword(key)
-
-	return Hashpassword, nil
+	return key, Hashpassword, nil
 
 }
 
