@@ -9,11 +9,11 @@ import (
 
 func FindUser(context *gin.Context){
     DriverNumber := context.Query("driver_number")
-	UserMail := context.Query("email")
+	UserNumber := context.Query("user_number")
 
 	if DriverNumber!= ""{
 		
-		driver_info,err := db.DriverProfile(DriverNumber)	
+		driver_info,err := db.UserProfile(DriverNumber,6)	
 
 	    if err != nil {
 		    context.JSON(http.StatusBadRequest, gin.H{"message": "Can't find the diver"})
@@ -28,19 +28,20 @@ func FindUser(context *gin.Context){
 	    context.JSON(http.StatusOK, gin.H{"message": "Successfully Find the Driver" , "event": driver_info })
 
 	}else{
-		user,err := db.FindUserByEmail(UserMail)
+
+		user_info,err := db.UserProfile(UserNumber,1)
 
 		if err != nil {
 			context.JSON(http.StatusBadRequest, gin.H{"message": "Can't find the user"})
 			return
 		}
 
-		if user == false{
+		if user_info.ID == 0{
 			context.JSON(http.StatusBadRequest, gin.H{"message": "User not found"})
 			return
 		}
 
-		context.JSON(http.StatusOK, gin.H{"message": "Successfully Find the user"})
+		context.JSON(http.StatusOK, gin.H{"message": "Successfully Find the user", "event": user_info })
 
 	}
 

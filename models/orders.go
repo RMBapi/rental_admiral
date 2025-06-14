@@ -9,25 +9,25 @@ import (
 
 type Orders struct {
 	gorm.Model
-	OrderId          string    `json:"order_id"`
-	CustomerID       uint      `json:"customer_id"` // FK to users.id
-	DriverID         *uint      `json:"driver_id"`   // FK to users.id
-	VehicleID        *uint      `json:"vehicle_id"`  // FK to vehicles.id
-	CreatedBy	     uint      `json:"created_by"`  // FK to users.id
-	DispatcherID     *uint      `json:"dispatcher_id"` // FK to users.id
-	VehicalNumber     string    `json:"vehicle_number"` 
-	VehicleType       int64     `json:"vehicle_type"` 
-	PickUpLatitude    float64   `json:"pickup_latitude"`
-	PickUpLongitude   float64   `json:"pickup_longitude"`
-	PickupAddress     string    `json:"pickup_address"`
-	DropOffLatitude   float64   `json:"dropoff_latitude"`	
-	DropOffLongitude  float64   `json:"dropoff_longitude"`
-	DropoffAddress    string    `json:"dropoff_address"`
-	PickupDateTime    time.Time `json:"pickup_date_time"`
-	DropoffDateTime   time.Time `json:"dropoff_date_time"`
-	TotalPrice        float64   `json:"total_price"`
-	PaymentStatus     int8      `json:"payment_status"` // 0 = unpaid, 1 = paid
-	PaymentMethod     int8      `json:"payment_method"` // 0 = cash, 1 = card
-	Status            int8      `json:"status"`        // 0 = pending, 1 = accepted, 2 = completed, 3 = cancelled
+	OrderId          string     `json:"orderd"`
+	CustomerID       int        `json:"customerId"` // FK to users.id
+	DriverID         *int       `json:"driverId"`   // FK to users.id
+	VehicleID        *int       `json:"vehicleId"`  // FK to vehicles.id
+	CreatedBy	     *int       `json:"createdBy"`  // FK to users.id
+	DispatcherID     *int       `json:"dispatcherId"` // FK to users.id
+	VehicalNumber    *string    `json:"vehicleNumber"` 
+	VehicleType       int64     `json:"vehicleType"` 
+	PickUpLatitude    float64   `json:"pickupLatitude"`
+	PickUpLongitude   float64   `json:"pickupLongitude"`
+	PickupAddress     string    `json:"pickupAddress"`
+	DropOffLatitude   float64   `json:"dropoffLatitude"`	
+	DropOffLongitude  float64   `json:"dropoffLongitude"`
+	DropoffAddress    string    `json:"dropoffAddress"`
+	PickupDateTime    time.Time `json:"pickupDateTime"`
+	DropoffDateTime   time.Time `json:"dropoffDateTime"`
+	TotalPrice        float64   `json:"totalPrice"`
+	PaymentStatus     int8      `json:"paymentStatus"` // 1 = paid, 2 = unpaid
+	PaymentMethod     int8      `json:"paymentMethod"` // 1 = cash, 2 = card
+	Status            int8      `json:"status"`        // 1 = pending, 2 = accepted, 3 = completed, 4 = cancelled
 
 }

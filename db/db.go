@@ -52,6 +52,12 @@ func SaveUser(user *models.User) error {
   return result.Error
 }
 
+
+func SaveOrder(order *models.Orders) error {
+  result := DB.Create(order)
+  return result.Error
+}
+
 func SaveVehicle(vehicle *models.Vehical) error {
   result := DB.Create(vehicle)
   return result.Error
@@ -69,35 +75,19 @@ func UniqueHashIdCheck(key string) (int64,error) {
 
 }
 
-func DriverProfile(number string) (response.DriverInfo, error) {
+func UserProfile(number string,User_type int8) (response.DriverInfo, error) {
 
 	var driver response.DriverInfo
 
 	err := DB.
 		Model(&models.User{}).
 		Select("id", "name").
-		Where("number = ? AND u_type = ?", number, 6).
+		Where("number = ? AND u_type = ?", number, User_type).
 		Scan(&driver).Error
 
 	return driver, err
 }
 
-
-func FindUserByEmail(email string) (bool, error) {
-	var id int64
-	err := DB.
-		Model(&models.User{}).
-		Select("id").
-		Where("email = ? ", email).
-		Scan(&id).Error
-
-	if id!= 0 {
-		return true, nil
-	}	
-
-	return false, err
-
-}
 
 
 func CustomerProfile(number string ) (int64,error) {

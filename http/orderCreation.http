@@ -1,0 +1,19 @@
+POST http://localhost:8080/api/v1/orderCreation
+content-type: application/json
+
+{
+    "customerId": 2,
+    "vehicleType": 2,
+    "pickupLatitude": 12.9715987,
+    "pickupLongitude": 77.594566,
+    "pickupAddress": "MG Road, Bangalore",
+    "dropoffLatitude": 12.9715987,
+    "dropoffLongitude": 77.594566,
+    "dropoffAddress": "Brigade Road, Bangalore",
+    "pickupDateTime": "2025-05-22T00:55:26Z",
+    "dropoffDateTime": "2025-05-22T01:55:26Z",
+    "totalPrice": 500,
+    "paymentStatus": 1,
+    "paymentMethod": 1,
+    "status": 2
+}

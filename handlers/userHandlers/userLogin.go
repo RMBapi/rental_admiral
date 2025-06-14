@@ -1,7 +1,6 @@
 package userHandlers
 
 import (
-	"fmt"
 	"net/http"
 	"net/url"
 
@@ -12,9 +11,10 @@ import (
 
 func UserLogin(context *gin.Context) {
 	emailEncoded := context.Query("email")
-	fmt.Println("Encoded Email:", emailEncoded)
+
 	email, err := url.QueryUnescape(emailEncoded)
-	fmt.Println("Email:", email)
+	
+
 	if err != nil {
         context.JSON(http.StatusBadRequest, gin.H{"error": "Invalid email format"})
 		return

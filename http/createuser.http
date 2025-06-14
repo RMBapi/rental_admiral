@@ -3,7 +3,7 @@ content-type: application/json
 
 {
     "name" : "test",
-    "email" :"llp@gmail.com",
+    "email" :"p@gmail.com",
     "phone" :"123456789",
     "type" :  3
 
