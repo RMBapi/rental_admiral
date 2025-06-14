@@ -9,24 +9,42 @@ import (
 
 func FindUser(context *gin.Context){
     DriverNumber := context.Query("driver_number")
-	// UserNumber := context.Query("user_number")
+	UserMail := context.Query("email")
 
-	driver_id,err := db.DriverProfile(DriverNumber)
-	// customer_id,err := db.CustomerProfile(UserNumber)
-	
-
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"message": "Can't find the diver id"})
-		return
-	}
-
-	if driver_id == 0{
-		context.JSON(http.StatusBadRequest, gin.H{"message": "Driver not found"})
-		return
-	}
+	if DriverNumber!= ""{
 		
-	context.JSON(http.StatusOK, gin.H{"message": "Successfully Find the driver id", "Driver id": driver_id})
+		driver_info,err := db.DriverProfile(DriverNumber)	
 
+	    if err != nil {
+		    context.JSON(http.StatusBadRequest, gin.H{"message": "Can't find the diver"})
+		    return
+	    }
+
+		if driver_info.ID == 0{
+			context.JSON(http.StatusBadRequest, gin.H{"message": "Driver not found"})
+			return
+		}
+		
+	    context.JSON(http.StatusOK, gin.H{"message": "Successfully Find the Driver" , "event": driver_info })
+
+	}else{
+		user,err := db.FindUserByEmail(UserMail)
+
+		if err != nil {
+			context.JSON(http.StatusBadRequest, gin.H{"message": "Can't find the user"})
+			return
+		}
+
+		if user == false{
+			context.JSON(http.StatusBadRequest, gin.H{"message": "User not found"})
+			return
+		}
+
+		context.JSON(http.StatusOK, gin.H{"message": "Successfully Find the user"})
+
+	}
+
+	
 }	
 
 

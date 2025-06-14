@@ -1,11 +1,6 @@
 package response
 
-// resp := struct{
-// 		User: models.User `json:"user"`
-// 		Vehical: models.Vehical `json:"vehicle"`
-// 	}
-
-
-func InfoResponse(){
-	
-}	
+type DriverInfo struct {
+	ID   int64
+	Name string
+}

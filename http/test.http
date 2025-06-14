@@ -1,0 +1,2 @@
+curl --location 'https://maps-api.pathao.io/v1/location/autocomplete/<center_lat>/<center_lon>/<query_text>' 
+--header 'Authorization: <api-key>'

@@ -52,5 +52,8 @@ func CreateUser(context *gin.Context){
 	UEvent := response.SendUserResponse(user,temp_password)
 	
 	context.JSON(http.StatusCreated, gin.H{"message": fmt.Sprintf("The %s account is successfully created", UEvent.UType), "event": UEvent})
-}	
+}
+
+
+
 

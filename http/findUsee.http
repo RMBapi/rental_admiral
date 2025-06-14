@@ -1,0 +1,3 @@
+GET http://localhost:8080/api/v1/profile?driver_number=123
+
+# GET http://localhost:8080/api/v1/profile?email=xyz@gmail.com
